@@ -13,7 +13,7 @@
     "@rocketh/signer": "^0.10.6",
     "@rocketh/verifier": "^0.11.17",
     "@types/fs-extra": "^11.0.4",
-    "as-soon": "^0.0.9",
+    "as-soon": "^0.0.11",
     "eip-1193": "^0.6.3",
     "fs-extra": "^11.2.0",
     "hardhat": "^2.22.5",
