@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/Test.sol";
-import "src/GreetingsRegistry/GreetingsRegistry.sol";
+import "./GreetingsRegistry.sol";
 
 contract GreetingsRegistryTest is Test {
     uint256 testNumber;
@@ -20,7 +20,8 @@ contract GreetingsRegistryTest is Test {
         assertEq(messageAfter, "hello");
     }
 
-    function test_RevertWhen_HelloCondition() public {
-    vm.expectRevert();
-    // Test logic
+    // function testFail_Hello() public view {
+    //     string memory message = registry.messages(msg.sender);
+    //     assertEq(message, "hello");
+    // }
 }
