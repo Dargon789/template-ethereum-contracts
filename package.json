@@ -17,7 +17,7 @@
 		"@types/node": "^24.2.1",
 		"as-soon": "^0.0.11",
 		"earl": "^1.3.0",
-		"forge-std": "github:foundry-rs/forge-std#v1.9.4",
+		"forge-std": "github:foundry-rs/forge-std#4f23591548b4d859a118e6a34a05790515159423",
 		"hardhat": "^3.0.0",
 		"hardhat-deploy": "^2.0.0-next.32",
 		"ldenv": "^0.3.12",
