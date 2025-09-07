@@ -33,7 +33,7 @@
 	},
 	"scripts": {
 		"prepare": "set-defaults .vscode && pnpm compile",
-		"docgen": "ldenv -m hardhat pnpm run deploy hardhat --save-deployments true --skip-prompts ~~ pnpm rocketh-doc -n @@MODE --except-suffix _Implementation,_Proxy,_Router,_Route ~~ @@",
+		"docgen": "./scripts/docgen.sh @@",
 		"local_node": "hardhat node",
 		"compile": "hardhat compile",
 		"compile:watch": "as-soon -w src pnpm compile",
