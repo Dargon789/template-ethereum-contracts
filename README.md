@@ -31,7 +31,7 @@ pnpm compile:watch
   This assumes you have a local node running: `pnpm local_node`
 
   ```bash
-  pnpm run deploy localhost
+  pnpm run deploy -- localhost
   ```
 
 - on a network of your choice
