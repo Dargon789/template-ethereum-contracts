@@ -45,7 +45,7 @@ pnpm compile:watch
 ### execute scripts
 
 ```bash
-pnpm execute <network name> scripts/setMessage.ts
+pnpm execute -- <network name> scripts/setMessage.ts
 ```
 
 or if you want to execute in a forked environment :
