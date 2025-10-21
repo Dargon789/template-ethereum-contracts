@@ -4,7 +4,7 @@ A template for developing EVM smart contracts using hardhat (v3) and hardhat-dep
 
 ## How to use it?
 
-### Compile your contracts
+### Compile Your Contracts
 
 ```bash
 pnpm compile
