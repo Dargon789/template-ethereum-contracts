@@ -51,7 +51,7 @@ pnpm execute -- <network name> scripts/setMessage.ts
 or if you want to execute in a forked environment :
 
 ```bash
-pnpm fork:execute <network name> scripts/setMessage.ts "Hello world"
+pnpm fork:execute -- <network name> scripts/setMessage.ts "Hello world"
 ```
 
 ### zellij
