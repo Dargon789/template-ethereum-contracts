@@ -16,7 +16,7 @@ pnpm compile
 pnpm test
 ```
 
-This will test both solidity and node test (as hardhat v3 does)
+This will test both Solidity and Node.js tests, as supported by Hardhat v3.
 
 ### watch for changes and rebuild automatically
 
