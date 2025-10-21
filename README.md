@@ -73,7 +73,7 @@ bash <(curl -L zellij.dev/launch) --layout zellij.kdl
 In the shell in the upper pane, you execute the script as mentioned above
 
 ```bash
-pnpm execute localhost scripts/setMessage.ts "Hello everyone"
+pnpm execute -- localhost scripts/setMessage.ts "Hello everyone"
 ```
 
 ## Initial Setup
