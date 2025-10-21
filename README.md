@@ -39,7 +39,7 @@ pnpm compile:watch
   Just make sure you have your .env.local set up, see [.env](.env) or if you use hardhat secret store, configure it
 
   ```bash
-  pnpm run deploy <network>
+  pnpm run deploy -- <network>
   ```
 
 ### execute scripts
