@@ -64,7 +64,7 @@ Once installed simply run the following to get a local in-memory Ethereum node r
 pnpm start
 ```
 
-if you want to try Zellij without installing it, try this :
+if you want to try Zellij without installing it, try this:
 
 ```bash
 bash <(curl -L zellij.dev/launch) --layout zellij.kdl
