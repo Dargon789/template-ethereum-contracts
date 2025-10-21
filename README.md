@@ -1,6 +1,6 @@
 # A template for EVM-based smart contract development
 
-A template for developing EVM smart contract using hardhat (v3) and hardhat-deploy (v2)
+A template for developing EVM smart contracts using hardhat (v3) and hardhat-deploy (v2)
 
 ## How to use it?
 
