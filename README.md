@@ -80,7 +80,7 @@ pnpm execute localhost scripts/setMessage.ts "Hello everyone"
 
 You need to have these installed
 
-- [nodejs](https://nodejs.org/en)
+- [Node.js](https://nodejs.org/en)
 
 - [pnpm](https://pnpm.io/)
 
