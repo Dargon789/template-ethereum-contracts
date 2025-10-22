@@ -2,6 +2,8 @@ on: [push]
 
 name: test
 
+permissions:
+  contents: read
 jobs:
   check:
     name: Foundry project
