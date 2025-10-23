@@ -54,7 +54,7 @@ or if you want to execute in a forked environment:
 pnpm fork:execute -- <network name> scripts/setMessage.ts "Hello world"
 ```
 
-### zellij
+### Zellij
 
 [zellij](https://zellij.dev/) is a useful multiplexer (think tmux) for which we have included a [layout file](./zellij.kdl) to get started
 
