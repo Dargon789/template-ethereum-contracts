@@ -24,7 +24,7 @@ This will test both Solidity and Node.js tests, as supported by Hardhat v3.
 pnpm compile:watch
 ```
 
-### deploy your contract
+### Deploy Your Contract
 
 - on localhost
 
