@@ -36,7 +36,7 @@ pnpm compile:watch
 
 - on a network of your choice
 
-  Just make sure you have your .env.local set up, see [.env](.env) or if you use hardhat secret store, configure it
+  Just make sure you have your .env.local set up, or if you use hardhat secret store, that it is configured.
 
   ```bash
   pnpm run deploy -- <network>
