@@ -42,7 +42,7 @@ pnpm compile:watch
   pnpm run deploy -- <network>
   ```
 
-### execute scripts
+### Execute Scripts
 
 ```bash
 pnpm execute -- <network name> scripts/setMessage.ts
