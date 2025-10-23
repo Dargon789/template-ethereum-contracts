@@ -70,7 +70,7 @@ if you want to try Zellij without installing it, try this:
 bash <(curl -L zellij.dev/launch) --layout zellij.kdl
 ```
 
-In the shell in the upper pane, you execute the script as mentioned above
+In the "shell" pane, you execute the script as mentioned above
 
 ```bash
 pnpm execute -- localhost scripts/setMessage.ts "Hello everyone"
