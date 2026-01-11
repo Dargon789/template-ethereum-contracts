@@ -28,7 +28,7 @@ jobs:
         uses: wevm/actions/.github/actions/pnpm@main
 
       - name: Report build size
-        uses: preactjs/compressed-size-action@v2
+        uses: preactjs/compressed-size-action@v3
         with:
           pattern: 'packages/**/dist/**'
           repo-token: ${{ secrets.GITHUB_TOKEN }}
