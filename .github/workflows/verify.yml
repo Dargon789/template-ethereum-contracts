@@ -42,6 +42,8 @@ jobs:
     needs: check
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
 
     steps:
       - name: Clone repository
@@ -64,6 +66,8 @@ jobs:
     needs: check
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
     strategy:
       matrix:
         typescript-version: ['5.7.3', '5.8.3', 'latest']
@@ -93,6 +97,8 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: read
     strategy:
       max-parallel: 3
       matrix:
