@@ -1,6 +1,6 @@
 import hre from 'hardhat';
-import {loadEnvironmentFromHardhat} from 'hardhat-deploy/helpers';
-import {Abi_GreetingsRegistry} from '@generated/types/GreetingsRegistry.js';
+import {Abi_GreetingsRegistry} from '../generated/abis/GreetingsRegistry.js';
+import { loadEnvironmentFromHardhat } from '../rocketh/environment.js';
 
 async function main() {
 	const env = await loadEnvironmentFromHardhat({hre});

@@ -1,39 +1,27 @@
-.DS_Store
-.next
-.nuxt
-.pnpm-debug.log*
+/node_modules
+
+.vscode/*
+!*.default
+*.local
+
+# rocketh
+generated
+deployments/localhost
+deployments/hardhat*
+deployments/lan
+deployments/default
+_metadata
+
+# hardhat
+/coverage
+/coverage.json
+/.coverage-config.json
+/.coverage-data.json
 cache
-coverage
-dist
-node_modules
-tsconfig.tsbuildinfo
-*.vitest-temp.json
+artifacts
+docs
 
-# local env files
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.envrc
+.vscode/*
+!*.default
 
-# proxy packages
-packages/cli/config
-packages/cli/plugins
-packages/core/actions
-packages/core/chains
-packages/core/codegen
-packages/core/experimental
-packages/core/internal
-packages/core/query
-packages/react/actions
-packages/react/chains
-packages/react/codegen
-packages/react/connectors
-packages/react/experimental
-packages/react/query
-packages/vue/actions
-packages/vue/chains
-packages/vue/connectors
-packages/vue/nuxt
-packages/vue/query
+dist/
