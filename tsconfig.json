@@ -1,17 +1,16 @@
-/* Based on https://github.com/tsconfig/bases/blob/501da2bcd640cf95c95805783e1012b992338f28/bases/node22.json */
 {
 	"compilerOptions": {
 		"lib": ["es2023"],
 		"module": "node16",
 		"target": "es2022",
+		"moduleResolution": "node16",
 		"strict": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"moduleResolution": "node16",
+		"sourceMap": true,
+		"declaration": true,
+		"declarationMap": true,
 		"outDir": "dist",
-		"paths": {
-			"@rocketh": ["./rocketh.ts"],
-			"@generated/*": ["./generated/*"]
-		}
+		"rootDir": "."
 	}
 }
