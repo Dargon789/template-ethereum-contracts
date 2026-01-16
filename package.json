@@ -1,78 +1,136 @@
 {
-	"name": "template-ethereum-contracts",
-	"version": "0.0.3",
-	"type": "module",
-	"exports": {
-		"./deploy/*": "./dist/deploy/*",
-		"./rocketh/*": "./dist/rocketh/*",
-		"./deployments/*": "./deployments/*",
-		"./artifacts/*": "./generated/artifacts/*",
-		"./abis/*": "./generated/abis/*"
-	},
-	"files": [
-		"dist",
-		"deployments",
-		"generated"
-	],
-	"dependencies": {
-		"@rocketh/deploy": "^0.17.4",
-		"@rocketh/proxy": "^0.17.6",
-		"@rocketh/read-execute": "^0.17.2",
-		"@rocketh/router": "^0.17.6",
-		"@rocketh/signer": "^0.17.1",
-		"@rocketh/viem": "^0.17.1"
-	},
-	"devDependencies": {
-		"@nomicfoundation/hardhat-keystore": "^3.0.3",
-		"@nomicfoundation/hardhat-network-helpers": "^3.0.3",
-		"@nomicfoundation/hardhat-node-test-runner": "^3.0.8",
-		"@nomicfoundation/hardhat-viem": "^3.0.1",
-		"@rocketh/doc": "^0.17.6",
-		"@rocketh/export": "^0.17.6",
-		"@rocketh/node": "^0.17.6",
-		"@rocketh/verifier": "^0.17.6",
-		"@types/node": "^25.0.3",
-		"as-soon": "^0.0.11",
-		"earl": "^2.0.0",
-		"forge-std": "github:foundry-rs/forge-std#v1.9.4",
-		"hardhat": "^3.1.0",
-		"hardhat-deploy": "^2.0.0-next.57",
-		"ldenv": "^0.3.16",
-		"prettier": "^3.7.4",
-		"prettier-plugin-solidity": "^2.2.1",
-		"rocketh": "^0.17.6",
-		"set-defaults": "^0.0.5",
-		"slippy": "^0.3.1",
-		"tsx": "^4.21.0",
-		"typescript": "^5.9.3",
-		"viem": "^2.43.2",
-		"wait-on": "^9.0.3",
-		"zellij-launcher": "^0.0.1"
-	},
-	"scripts": {
-		"prepare": "set-defaults .vscode && pnpm compile",
-		"---------------------- DEV ---------------------- ": "",
-		"local_node": "ldenv -d localhost hardhat node",
-		"compile": "hardhat compile",
-		"compile:watch": "as-soon -w src pnpm compile",
-		"fork:execute": "ldenv tsx @=HARDHAT_FORK=@@MODE @@",
-		"fork:deploy": "pnpm compile --build-profile production && ldenv hardhat @=HARDHAT_FORK=@@MODE deploy @@",
-		"deploy:dev": "ldenv -d localhost hardhat --network @@MODE deploy --skip-prompts @@",
-		"deploy:watch": "wait-on ./generated && ldenv -m localhost as-soon -w generated -w deploy pnpm run deploy:dev @@MODE @@",
-		"test": "hardhat test",
-		"test:watch": "wait-on ./generated && as-soon -w generated -w test hardhat test --no-compile",
-		"format:check": "prettier --check .",
-		"format": "prettier --write .",
-		"lint": "slippy src/**/*.sol",
-		"---------------------- PRODUCTION ---------------------- ": "",
-		"docgen": "ldenv -m default pnpm run deploy @@MODE --save-deployments true --skip-prompts ~~ pnpm rocketh-doc -e @@MODE --except-suffix _Implementation,_Proxy,_Router,_Route ~~ @@",
-		"execute": "ldenv -n HARDHAT_NETWORK tsx @@",
-		"deploy": "pnpm compile --build-profile production && ldenv hardhat --network @@MODE deploy @@",
-		"verify": "ldenv rocketh-verify -e @@MODE @@",
-		"export": "ldenv rocketh-export -e @@MODE @@",
-		"typescript": "tsc",
-		"---------------------- START ---------------------- ": "",
-		"stop": "zellij kill-session $npm_package_name",
-		"start": "zellij-launcher a $npm_package_name || zellij -n zellij.kdl -s $npm_package_name"
-	}
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "pnpm run --r --filter \"./packages/**\" build",
+    "changeset:prepublish": "pnpm version:update && pnpm build && bun scripts/formatPackageJson.ts && bun scripts/generateProxyPackages.ts",
+    "changeset:publish": "pnpm changeset:prepublish && changeset publish",
+    "changeset:version": "changeset version && pnpm version:update && pnpm format",
+    "check": "biome check --write",
+    "check:repo": "sherif -i viem",
+    "check:types": "pnpm run --r --parallel check:types && tsc --noEmit",
+    "check:unused": "pnpm clean && knip",
+    "clean": "pnpm run --r --parallel clean && rm -rf packages/**/*.json.tmp",
+    "deps": "pnpx taze -r",
+    "dev": "pnpm dev:react",
+    "dev:cli": "pnpm --filter cli dev",
+    "dev:core": "pnpm --filter vite-core dev",
+    "dev:create-wagmi": "pnpm --filter create-wagmi dev",
+    "dev:next": "pnpm --filter next-app dev",
+    "dev:nuxt": "pnpm --filter nuxt-app dev",
+    "dev:react": "pnpm --filter vite-react dev",
+    "dev:vue": "pnpm --filter vite-vue dev",
+    "docs:dev": "pnpm --filter site dev",
+    "format": "biome format --write",
+    "postinstall": "pnpm preconstruct",
+    "preconstruct": "bun scripts/preconstruct.ts",
+    "preinstall": "pnpx only-allow pnpm",
+    "prepare": "pnpm simple-git-hooks",
+    "test": "vitest",
+    "test:build": "bun scripts/generateProxyPackages.ts && pnpm run --r --parallel test:build",
+    "test:cli": "vitest --project @wagmi/cli",
+    "test:connectors": "vitest --project @wagmi/connectors",
+    "test:core": "vitest --project @wagmi/core",
+    "test:create-wagmi": "vitest --project create-wagmi",
+    "test:cov": "vitest run --coverage",
+    "test:react": "vitest --project wagmi",
+    "test:typecheck": "vitest typecheck",
+    "test:update": "vitest --update",
+    "test:vue": "vitest --project @wagmi/vue",
+    "version:update": "bun scripts/updateVersion.ts",
+    "version:update:viem": "bun scripts/updateViemVersion.ts"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.16.4",
+    "@biomejs/biome": "^1.9.4",
+    "@changesets/changelog-github": "0.4.6",
+    "@changesets/cli": "^2.27.8",
+    "@types/bun": "^1.1.10",
+    "@vitest/coverage-v8": "^3.2.4",
+    "@wagmi/test": "workspace:*",
+    "bun": "^1.1.30",
+    "happy-dom": "^18.0.1",
+    "knip": "^5.30.6",
+    "prool": "^0.0.23",
+    "publint": "^0.3.0",
+    "sherif": "^1.0.0",
+    "simple-git-hooks": "^2.11.1",
+    "typescript": "5.8.3",
+    "viem": "2.31.4",
+    "vitest": "^2.1.9"
+  },
+  "packageManager": "pnpm@9.11.0",
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "react",
+        "react-native",
+        "search-insights"
+      ]
+    }
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm check"
+  },
+  "knip": {
+    "ignore": ["**/templates/**", "**/hardhat.config.js"],
+    "ignoreBinaries": ["only-allow"],
+    "ignoreWorkspaces": [
+      "packages/register-tests/**",
+      "packages/test",
+      "playgrounds/**"
+    ],
+    "workspaces": {
+      ".": {
+        "project": "scripts/*.ts"
+      },
+      "packages/cli": {
+        "entry": [
+          "src/cli.ts!",
+          "src/exports/{config,index,plugins}.ts!",
+          "types/*.d.ts!"
+        ],
+        "ignore": ["test/{constants,setup,utils}.ts"]
+      },
+      "packages/connectors": {
+        "entry": "src/exports/index.ts!"
+      },
+      "packages/core": {
+        "entry": "src/exports/{actions,chains,codegen,experimental,index,internal,query}.ts!",
+        "ignore": ["test/setup.ts"],
+        "ignoreDependencies": ["@tanstack/query-core"]
+      },
+      "packages/create-wagmi": {
+        "entry": "src/cli.ts!"
+      },
+      "packages/react": {
+        "entry": [
+          "src/exports/{actions,chains,codegen,connectors,experimental,index,query}.ts!",
+          "src/exports/actions/experimental.ts!"
+        ],
+        "ignore": ["test/setup.ts"]
+      },
+      "packages/test": {
+        "entry": [
+          "src/{globalSetup,setup}.ts!",
+          "src/exports/{index,react}.ts!"
+        ]
+      },
+      "packages/vue": {
+        "entry": [
+          "src/exports/{actions,chains,connectors,index,nuxt,query}.ts!",
+          "src/exports/actions/experimental.ts!"
+        ],
+        "ignore": ["src/nuxt/runtime/*", "test/setup.ts"],
+        "ignoreDependencies": ["nuxt"]
+      },
+      "site": {
+        "project": ["**/*.ts", "**/*.tsx"]
+      }
+    }
+  }
 }

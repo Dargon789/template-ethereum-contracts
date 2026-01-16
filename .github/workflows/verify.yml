@@ -1,10 +1,9 @@
 name: Verify
+permissions:
+  contents: read
 on:
   workflow_call:
   workflow_dispatch:
-
-permissions:
-  contents: read
 
 jobs:
   check:
@@ -44,9 +43,9 @@ jobs:
     name: Build
     needs: check
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     permissions:
       contents: read
+    timeout-minutes: 5
 
     steps:
       - name: Clone repository
@@ -68,9 +67,9 @@ jobs:
     name: Types
     needs: check
     runs-on: ubuntu-latest
-    timeout-minutes: 5
     permissions:
       contents: read
+    timeout-minutes: 5
     strategy:
       matrix:
         typescript-version: ['5.7.3', '5.8.3', 'latest']
@@ -99,9 +98,9 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     permissions:
       contents: read
+    timeout-minutes: 10
     strategy:
       max-parallel: 3
       matrix:

@@ -1,25 +1,30 @@
-import { randomBytes } from 'crypto'
+const size = 256
+let index = size
+let buffer: string
+
+function getSecureRandomBytes(byteLength: number): Uint8Array {
+  if (typeof globalThis !== 'undefined' && (globalThis as any).crypto?.getRandomValues) {
+    const array = new Uint8Array(byteLength)
+    ;(globalThis as any).crypto.getRandomValues(array)
+    return array
+  }
+
+  // Node.js fallback
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const nodeCrypto = require('crypto') as typeof import('crypto')
+  return new Uint8Array(nodeCrypto.randomBytes(byteLength))
+}
 
 export function uid(length = 11) {
-  if (length <= 0) return ''
+  if (!buffer || index + length > size * 2) {
+    buffer = ''
+    index = 0
 
-  // We need `length` hex characters, which is `length / 2` bytes (rounded up).
-  const byteLength = Math.ceil(length / 2)
-
-  let bytes: Uint8Array
-  if (typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function') {
-    // Browser or runtime with Web Crypto API
-    bytes = crypto.getRandomValues(new Uint8Array(byteLength))
-  } else {
-    // Node.js fallback
-    bytes = randomBytes(byteLength)
+    const bytes = getSecureRandomBytes(size)
+    for (let i = 0; i < bytes.length; i++) {
+      const hex = bytes[i].toString(16).padStart(2, '0')
+      buffer += hex
+    }
   }
-
-  let hex = ''
-  for (let i = 0; i < bytes.length; i++) {
-    const byteHex = bytes[i].toString(16).padStart(2, '0')
-    hex += byteHex
-  }
-
-  return hex.slice(0, length)
+  return buffer.substring(index, index++ + length)
 }

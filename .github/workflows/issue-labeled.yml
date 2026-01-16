@@ -1,5 +1,9 @@
 name: Issue Labeled
 
+permissions:
+  contents: read
+  issues: write
+
 on:
   issues:
     types: [labeled]
@@ -7,9 +11,6 @@ on:
 jobs:
   issue-labeled:
     if: ${{ github.repository_owner == 'wevm' }}
-    permissions:
-      contents: read
-      issues: write
     uses: wevm/actions/.github/workflows/issue-labeled.yml@main
     with:
       needs-reproduction-body: |
