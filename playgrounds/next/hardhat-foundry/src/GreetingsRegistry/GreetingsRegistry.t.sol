@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {Test} from "forge-std/Test.sol";
-import {GreetingsRegistry} from "./GreetingsRegistry.sol";
+import "forge-std/Test.sol";
+import "./GreetingsRegistry.sol";
 
 contract GreetingsRegistryTest is Test {
-    uint256 internal testNumber;
-    GreetingsRegistry internal registry;
+    uint256 testNumber;
+    GreetingsRegistry registry;
 
     function setUp() public {
         registry = new GreetingsRegistry("");
@@ -20,5 +20,8 @@ contract GreetingsRegistryTest is Test {
         assertEq(messageAfter, "hello");
     }
 
-
+    // function testFail_Hello() public view {
+    //     string memory message = registry.messages(msg.sender);
+    //     assertEq(message, "hello");
+    // }
 }
