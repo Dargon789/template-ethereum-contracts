@@ -13,5 +13,8 @@
   },
   "[vue]": {
     "editor.defaultFormatter": "Vue.volar"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
   }
 }
