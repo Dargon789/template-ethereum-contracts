@@ -7,9 +7,9 @@ import type {
 import {
   ChainNotConfiguredError,
   type Connector,
-  ProviderNotFoundError,
   createConnector,
   extractRpcUrls,
+  ProviderNotFoundError,
 } from '@wagmi/core'
 import type {
   Compute,
@@ -21,16 +21,16 @@ import type {
 import {
   type AddEthereumChainParameter,
   type Address,
+  getAddress,
   type Hex,
+  hexToNumber,
+  numberToHex,
   type ProviderConnectInfo,
   type ProviderRpcError,
   ResourceUnavailableRpcError,
   type RpcError,
   SwitchChainError,
   UserRejectedRequestError,
-  getAddress,
-  hexToNumber,
-  numberToHex,
   withRetry,
   withTimeout,
 } from 'viem'
@@ -61,16 +61,7 @@ type WagmiMetaMaskSDKOptions = Compute<
       | 'useDeeplink'
       | 'readonlyRPCMap'
     >
-  > & {
-    /** @deprecated */
-    forceDeleteProvider?: MetaMaskSDKOptions['forceDeleteProvider']
-    /** @deprecated */
-    forceInjectProvider?: MetaMaskSDKOptions['forceInjectProvider']
-    /** @deprecated */
-    injectProvider?: MetaMaskSDKOptions['injectProvider']
-    /** @deprecated */
-    useDeeplink?: MetaMaskSDKOptions['useDeeplink']
-  }
+  >
 >
 
 metaMask.type = 'metaMask' as const
@@ -113,7 +104,7 @@ export function metaMask(parameters: MetaMaskParameters = {}) {
         }
       }
     },
-    async connect({ chainId, isReconnecting } = {}) {
+    async connect({ chainId, isReconnecting, withCapabilities } = {}) {
       const provider = await this.getProvider()
       if (!displayUri) {
         displayUri = this.onDisplayUri
@@ -191,7 +182,13 @@ export function metaMask(parameters: MetaMaskParameters = {}) {
           provider.on('disconnect', disconnect as Listener)
         }
 
-        return { accounts, chainId: currentChainId }
+        return {
+          // TODO(v3): Make `withCapabilities: true` default behavior
+          accounts: (withCapabilities
+            ? accounts.map((address) => ({ address, capabilities: {} }))
+            : accounts) as never,
+          chainId: currentChainId,
+        }
       } catch (err) {
         const error = err as RpcError
         if (error.code === UserRejectedRequestError.code)
@@ -239,7 +236,14 @@ export function metaMask(parameters: MetaMaskParameters = {}) {
         // Unwrapping import for Vite compatibility.
         // See: https://github.com/vitejs/vite/issues/9703
         const MetaMaskSDK = await (async () => {
-          const { default: SDK } = await import('@metamask/sdk')
+          const { default: SDK } = await (() => {
+            // safe webpack optional peer dependency dynamic import
+            try {
+              return import('@metamask/sdk')
+            } catch {
+              throw new Error('dependency "@metamask/sdk" not found')
+            }
+          })()
           if (typeof SDK !== 'function' && typeof SDK.default === 'function')
             return SDK.default
           return SDK as unknown as typeof SDK.default
@@ -253,12 +257,12 @@ export function metaMask(parameters: MetaMaskParameters = {}) {
           })?.[0]
 
         sdk = new MetaMaskSDK({
+          // Workaround cast since MetaMask SDK does not support `'exactOptionalPropertyTypes'`
+          ...(parameters as RemoveUndefined<typeof parameters>),
           _source: 'wagmi',
           forceDeleteProvider: false,
           forceInjectProvider: false,
           injectProvider: false,
-          // Workaround cast since MetaMask SDK does not support `'exactOptionalPropertyTypes'`
-          ...(parameters as RemoveUndefined<typeof parameters>),
           readonlyRPCMap,
           dappMetadata: {
             ...parameters.dappMetadata,
@@ -272,7 +276,7 @@ export function metaMask(parameters: MetaMaskParameters = {}) {
                 ? window.location.origin
                 : 'https://wagmi.sh',
           },
-          useDeeplink: parameters.useDeeplink ?? true,
+          useDeeplink: true,
         })
         const result = await sdk.init()
         // On initial load, sometimes `sdk.getProvider` does not return provider.
