@@ -1,147 +1,97 @@
-# Boilerplate for ethereum solidity smart contract development
+# A template for EVM-based smart contract development
 
-## INSTALL
+A template for developing EVM smart contract using hardhat (v3) and hardhat-deploy (v2)
 
-```bash
-yarn
-```
+## How to use it?
 
-## TEST
-
-There are 3 flavors of tests: hardhat, dapptools and forge
-
-### hardhat
-
-- One using hardhat that can leverage hardhat-deploy to reuse deployment procedures and named accounts:
+### Compile your contracts
 
 ```bash
-yarn test
+pnpm compile
 ```
 
-### [dapptools](https://dapp.tools)
+### Test your contracts
 
 ```bash
-dapp test
+pnpm test
 ```
 
-The latter requires additional step to set up your machine:
+This will test both solidity and node test (as hardhat v3 does)
 
-Install dapptools (Following instruction [here](https://github.com/dapphub/dapptools#installation)):
+### watch for changes and rebuild automatically
 
 ```bash
-# user must be in sudoers
-curl -L https://nixos.org/nix/install | sh
-
-# Run this or login again to use Nix
-. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-
-curl https://dapp.tools/install | sh
+pnpm compile:watch
 ```
 
-Then install solc with the correct version:
+### deploy your contract
+
+- on localhost
+
+  This assumes you have a local node running: `pnpm local_node`
+
+  ```bash
+  pnpm run deploy localhost
+  ```
+
+- on a network of your choice
+
+  Just make sure you have your .env.local setup, see [.env](.env) or if you use hardhat secret store, configure it
+
+  ```bash
+  pnpm run deploy <network>
+  ```
+
+### execute scripts
 
 ```bash
-nix-env -f https://github.com/dapphub/dapptools/archive/master.tar.gz -iA solc-static-versions.solc_0_8_9
+pnpm execute <network name> scripts/setMessage.ts
 ```
 
-### forge
+or if you want to execute in a forked environment :
 
 ```bash
-forge test
+pnpm fork:execute <network name> scripts/setMessage.ts "Hello world"
 ```
 
-This require the installation of forge (see [foundry](https://github.com/gakonst/foundry))
+### zellij
 
-## SCRIPTS
+[zellij](https://zellij.dev/) is a useful multiplexer (think tmux) for which we have included a [layout file](./zellij.kdl) to get started
 
-Here is the list of npm scripts you can execute:
+Once installed simply run the following to get a local in-memory Ethereum node running along with the tests
 
-Some of them relies on [./\_scripts.js](./_scripts.js) to allow parameterizing it via command line argument (have a look inside if you need modifications)
-<br/><br/>
+```bash
+pnpm start
+```
 
-### `yarn prepare`
+if you want to try Zellij without installing it, try this :
 
-As a standard lifecycle npm script, it is executed automatically upon install. It generate config file and typechain to get you started with type safe contract interactions
-<br/><br/>
+```bash
+bash <(curl -L zellij.dev/launch) --layout zellij.kdl
+```
 
-### `yarn format` and `yarn format:fix`
+In the shell in the upper pane, you execute the script as mentioned above
 
-These will format check your code. the `:fix` version will modifiy the files to match the requirement specified in `.prettierrc.`
-<br/><br/>
+```bash
+pnpm execute localhost scripts/setMessage.ts "Hello everyone"
+```
 
-### `yarn compile`
+## Initial Setup
 
-These will compile your contracts
-<br/><br/>
+You need to have these installed
 
-### `yarn void:deploy`
+- [nodejs](https://nodejs.org/en)
 
-This will deploy your contracts on the in-memory hardhat network and exit, leaving no trace. quick way to ensure deployments work as intended without consequences
-<br/><br/>
+- [pnpm](https://pnpm.io/)
 
-### `yarn test [mocha args...]`
+  ```bash
+  npm i -g pnpm
+  ```
 
-These will execute your tests using mocha. you can pass extra arguments to mocha
-<br/><br/>
+Then you need to install the local dependencies with the following command:
 
-### `yarn coverage`
+```bash
+pnpm i
+```
 
-These will produce a coverage report in the `coverage/` folder
-<br/><br/>
-
-### `yarn gas`
-
-These will produce a gas report for function used in the tests
-<br/><br/>
-
-### `yarn dev`
-
-These will run a local hardhat network on `localhost:8545` and deploy your contracts on it. Plus it will watch for any changes and redeploy them.
-<br/><br/>
-
-### `yarn local:dev`
-
-This assumes a local node it running on `localhost:8545`. It will deploy your contracts on it. Plus it will watch for any changes and redeploy them.
-<br/><br/>
-
-### `yarn execute <network> <file.ts> [args...]`
-
-This will execute the script `<file.ts>` against the specified network
-<br/><br/>
-
-### `yarn deploy <network> [args...]`
-
-This will deploy the contract on the specified network.
-
-Behind the scene it uses `hardhat deploy` command so you can append any argument for it
-<br/><br/>
-
-### `yarn export <network> <file.json>`
-
-This will export the abi+address of deployed contract to `<file.json>`
-<br/><br/>
-
-### `yarn fork:execute <network> [--blockNumber <blockNumber>] [--deploy] <file.ts> [args...]`
-
-This will execute the script `<file.ts>` against a temporary fork of the specified network
-
-if `--deploy` is used, deploy scripts will be executed
-<br/><br/>
-
-### `yarn fork:deploy <network> [--blockNumber <blockNumber>] [args...]`
-
-This will deploy the contract against a temporary fork of the specified network.
-
-Behind the scene it uses `hardhat deploy` command so you can append any argument for it
-<br/><br/>
-
-### `yarn fork:test <network> [--blockNumber <blockNumber>] [mocha args...]`
-
-This will test the contract against a temporary fork of the specified network.
-<br/><br/>
-
-### `yarn fork:dev <network> [--blockNumber <blockNumber>] [args...]`
-
-This will deploy the contract against a fork of the specified network and it will keep running as a node.
-
-Behind the scene it uses `hardhat node` command so you can append any argument for it
+We also recommend installing [Zellij](https://zellij.dev/) to have your dev env setup in one go via `pnpm start`
