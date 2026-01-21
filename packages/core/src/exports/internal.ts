@@ -14,9 +14,9 @@ export {
 ////////////////////////////////////////////////////////////////////////////////
 
 export {
-  type EventData,
-  Emitter,
   createEmitter,
+  Emitter,
+  type EventData,
 } from '../createEmitter.js'
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,16 +31,22 @@ export type {
   ScopeKeyParameter,
 } from '../types/properties.js'
 
+export type { QueryParameter } from '../types/query.js'
+
 export type {
   Compute,
   ExactPartial,
+  FixedArray,
   Mutable,
-  StrictOmit as Omit,
   OneOf,
+  PartialBy,
   RemoveUndefined,
+  RequiredBy,
+  StrictOmit as Omit,
   UnionCompute,
-  UnionStrictOmit,
   UnionExactPartial,
+  UnionLooseOmit,
+  UnionStrictOmit,
 } from '../types/utils.js'
 
 ////////////////////////////////////////////////////////////////////////////////

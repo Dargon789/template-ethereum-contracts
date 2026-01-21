@@ -1,5 +1,327 @@
 # @wagmi/connectors
 
+## 7.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`4fefa57`](https://github.com/wevm/wagmi/commit/4fefa576014820b454344b579282ddecde5c7994)]:
+  - @wagmi/core@3.2.2
+
+## 7.1.1
+
+### Patch Changes
+
+- Updated dependencies [[`a373b50`](https://github.com/wevm/wagmi/commit/a373b504f2ba199ca63ec0da6138ad1aa12a3a8f)]:
+  - @wagmi/core@3.2.1
+
+## 7.1.0
+
+### Patch Changes
+
+- Updated dependencies [[`2ee3f55`](https://github.com/wevm/wagmi/commit/2ee3f559a2637c7aab3fca6c7d196cf238ecd63d)]:
+  - @wagmi/core@3.2.0
+
+## 7.0.7
+
+### Patch Changes
+
+- Updated dependencies [[`14989e4`](https://github.com/wevm/wagmi/commit/14989e425a36b765a6a24e5abf1782c2a26c70db)]:
+  - @wagmi/core@3.1.0
+
+## 7.0.6
+
+### Patch Changes
+
+- Updated dependencies [[`a5c4381`](https://github.com/wevm/wagmi/commit/a5c4381563374018dca0074017b21181ac027e9a)]:
+  - @wagmi/core@3.0.2
+
+## 7.0.5
+
+### Patch Changes
+
+- Fixed published exports. ([`ed86500`](https://github.com/wevm/wagmi/commit/ed86500fbd56e5f543cb04e990b2dadc08d8b3b5))
+
+## 7.0.4
+
+### Patch Changes
+
+- Fixed internal dynamic imports when using Webpack ([#4911](https://github.com/wevm/wagmi/pull/4911))
+
+## 7.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`058c8c1`](https://github.com/wevm/wagmi/commit/058c8c18459a69a4aa2141e34640273a06a819f4)]:
+  - @wagmi/core@3.0.1
+
+## 7.0.2
+
+### Patch Changes
+
+- Fixed account ordering in `baseAccount` connection response ([#4882](https://github.com/wevm/wagmi/pull/4882))
+
+## 7.0.1
+
+### Patch Changes
+
+- Fixed `baseAccount` reconnect behavior ([#4884](https://github.com/wevm/wagmi/pull/4884))
+
+## 7.0.0
+
+### Major Changes
+
+- All connector dependencies are now optional peer dependencies. This means that if you want to use a specific connector, you need to install its required dependencies. ([#4857](https://github.com/wevm/wagmi/pull/4857))
+
+  #### baseAccount
+
+  [`baseAccount`](https://wagmi.sh/core/api/connectors/baseAccount) requires `@base-org/account`
+
+  ```
+  pnpm add @base-org/account@~2.4.0
+  ```
+
+  #### coinbaseWallet
+
+  [`coinbaseWallet`](https://wagmi.sh/core/api/connectors/coinbaseWallet) requires `@coinbase/wallet-sdk`
+
+  ```
+  pnpm add @coinbase/wallet-sdk@~4.3.6
+  ```
+
+  #### gemini
+
+  [`gemini`](https://wagmi.sh/core/api/connectors/gemini) requires `@gemini-wallet/core`
+
+  ```
+  pnpm add @gemini-wallet/core@~0.3.1
+  ```
+
+  #### metaMask
+
+  [`metaMask`](https://wagmi.sh/core/api/connectors/metaMask) requires `@metamask/sdk`
+
+  ```
+  pnpm add @metamask/sdk@~0.33.1
+  ```
+
+  #### porto
+
+  [`porto`](https://wagmi.sh/core/api/connectors/porto) requires `porto`
+
+  ```
+  pnpm add porto@~0.2.35
+  ```
+
+  #### safe
+
+  [`safe`](https://wagmi.sh/core/api/connectors/safe) requires `@safe-global/safe-apps-provider` and `@safe-global/safe-apps-sdk`
+
+  ```
+  pnpm add @safe-global/safe-apps-provider@~0.18.6 @safe-global/safe-apps-sdk@~9.1.0
+  ```
+
+  #### walletConnect
+
+  [`walletConnect`](https://wagmi.sh/core/api/connectors/walletConnect) requires `walletconnect/ethereum-provider`
+
+  ```
+  pnpm add @walletconnect/ethereum-provider@~2.21.1
+  ```
+
+### Patch Changes
+
+- Updated dependencies [[`73e7326`](https://github.com/wevm/wagmi/commit/73e7326ac21303d7790765c78a7076b319b2ad26)]:
+  - @wagmi/core@3.0.0
+
+## 6.2.0
+
+### Minor Changes
+
+- Added support for `'wallet_connect'` capabilities to `baseAccount` connector ([#4877](https://github.com/wevm/wagmi/pull/4877))
+
+## 6.1.4
+
+### Patch Changes
+
+- Bumped Gemini package version ([`2ddb506`](https://github.com/wevm/wagmi/commit/2ddb506b67fcb2abb464765d2af88df2eb58de60))
+
+## 6.1.3
+
+### Patch Changes
+
+- Added warning to `walletConnect` about vulnerability and relicensing. ([`65cf154`](https://github.com/wevm/wagmi/commit/65cf1544d65bfb1fb830c405a371e8cd3c3fb73e))
+
+## 6.1.2
+
+### Patch Changes
+
+- Bumped connector deps ([#4843](https://github.com/wevm/wagmi/pull/4843))
+
+## 6.1.1
+
+### Patch Changes
+
+- Bumped Porto version ([`990dd23`](https://github.com/wevm/wagmi/commit/990dd2339e96b302931056e0fb898bd2dd42a04d))
+
+## 6.1.0
+
+### Minor Changes
+
+- Added `getPortoInstance` method to `porto`. ([#4837](https://github.com/wevm/wagmi/pull/4837))
+
+## 6.0.1
+
+### Patch Changes
+
+- Updated dependencies [[`74100b0`](https://github.com/wevm/wagmi/commit/74100b0dea2dfe7b057fdbe1660596554c70642e)]:
+  - @wagmi/core@2.22.1
+
+## 6.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`ebb2352`](https://github.com/wevm/wagmi/commit/ebb2352375e05e52d0bcf6ae1a60ac4e798bf29f)]:
+  - @wagmi/core@2.22.0
+
+## 5.11.2
+
+### Patch Changes
+
+- Added `chainId` parameter on `walletConnect#getProvider` ([#4806](https://github.com/wevm/wagmi/pull/4806))
+
+- Updated dependencies [[`866aeb0`](https://github.com/wevm/wagmi/commit/866aeb0e6361ef9114246e50149c1077bc05bf10)]:
+  - @wagmi/core@2.21.2
+
+## 5.11.1
+
+### Patch Changes
+
+- Updated `porto`. ([`41eb70e`](https://github.com/wevm/wagmi/commit/41eb70e072774b282053a5e98669a7d01c0e2438))
+
+- Pulled `porto` connector implementation. ([#4801](https://github.com/wevm/wagmi/pull/4801))
+
+## 5.11.0
+
+### Minor Changes
+
+- Added `porto` connector. ([#4794](https://github.com/wevm/wagmi/pull/4794))
+
+## 5.10.2
+
+### Patch Changes
+
+- Updated dependencies [[`72b703a`](https://github.com/wevm/wagmi/commit/72b703ab379c74ecf88f637cf47f31786c823a48)]:
+  - @wagmi/core@2.21.1
+
+## 5.10.1
+
+### Patch Changes
+
+- Bumped MetaMask SDK version in accordance with [security advisory](https://github.com/advisories/GHSA-qj3p-xc97-xw74). ([`5937456`](https://github.com/wevm/wagmi/commit/59374562f2c3a41245687eb1c29ee8023737c7cc))
+
+## 5.10.0
+
+### Minor Changes
+
+- [#4784](https://github.com/wevm/wagmi/pull/4784) [`8736133a13eb82099e20468b735525a266fdfd6c`](https://github.com/wevm/wagmi/commit/8736133a13eb82099e20468b735525a266fdfd6c) Thanks [@tmm](https://github.com/tmm)! - Added `withCapabilities` option to `connect` for exposing response capabilities.
+
+### Patch Changes
+
+- Updated dependencies [[`8736133a13eb82099e20468b735525a266fdfd6c`](https://github.com/wevm/wagmi/commit/8736133a13eb82099e20468b735525a266fdfd6c)]:
+  - @wagmi/core@2.21.0
+
+## 5.9.9
+
+### Patch Changes
+
+- Updated dependencies [[`ce06e137e7bfaf000464b1cecd6c86e19a66ebcf`](https://github.com/wevm/wagmi/commit/ce06e137e7bfaf000464b1cecd6c86e19a66ebcf)]:
+  - @wagmi/core@2.20.3
+
+## 5.9.8
+
+### Patch Changes
+
+- [#4691](https://github.com/wevm/wagmi/pull/4691) [`a03da817a388646c9b4885792101a67eef3616e7`](https://github.com/wevm/wagmi/commit/a03da817a388646c9b4885792101a67eef3616e7) Thanks [@frolic](https://github.com/frolic)! - Fixed `walletConnect#connect` by moving chain switch directly inside instead of relying on `getProvider`.
+
+## 5.9.7
+
+### Patch Changes
+
+- Updated dependencies [[`986b96427a4bb743d2673dfbc7e8cb5041316db3`](https://github.com/wevm/wagmi/commit/986b96427a4bb743d2673dfbc7e8cb5041316db3)]:
+  - @wagmi/core@2.20.2
+
+## 5.9.6
+
+### Patch Changes
+
+- Updated dependencies [[`d4c367ca46c508598c997cf229a31593a1e2b8b8`](https://github.com/wevm/wagmi/commit/d4c367ca46c508598c997cf229a31593a1e2b8b8)]:
+  - @wagmi/core@2.20.1
+
+## 5.9.5
+
+### Patch Changes
+
+- Updated dependencies [[`a13aa2b68890f180f6ac3f741cbb9817494cb66c`](https://github.com/wevm/wagmi/commit/a13aa2b68890f180f6ac3f741cbb9817494cb66c)]:
+  - @wagmi/core@2.20.0
+
+## 5.9.4
+
+### Patch Changes
+
+- [#4764](https://github.com/wevm/wagmi/pull/4764) [`f4039419b83b52b2984de149db85c11f503ffe39`](https://github.com/wevm/wagmi/commit/f4039419b83b52b2984de149db85c11f503ffe39) Thanks [@mikelxc](https://github.com/mikelxc)! - Updated gemini connector
+
+## 5.9.3
+
+### Patch Changes
+
+- [#4759](https://github.com/wevm/wagmi/pull/4759) [`909324d28c81e15c9df312b277dcff1983fbae4d`](https://github.com/wevm/wagmi/commit/909324d28c81e15c9df312b277dcff1983fbae4d) Thanks [@mikelxc](https://github.com/mikelxc)! - Added Gemini
+
+## 5.9.2
+
+### Patch Changes
+
+- Updated dependencies [[`b5f017dbc707729eb0b36d617352be224d1139d4`](https://github.com/wevm/wagmi/commit/b5f017dbc707729eb0b36d617352be224d1139d4)]:
+  - @wagmi/core@2.19.0
+
+## 5.9.1
+
+### Patch Changes
+
+- [`6fbafd425e488dbeee8404162dbeb3c737eeb8cf`](https://github.com/wevm/wagmi/commit/6fbafd425e488dbeee8404162dbeb3c737eeb8cf) Thanks [@jxom](https://github.com/jxom)! - Updated `@base-org/account`
+
+- Updated dependencies [[`6514ba29a5acb918773235fed0238d7d679d06d5`](https://github.com/wevm/wagmi/commit/6514ba29a5acb918773235fed0238d7d679d06d5)]:
+  - @wagmi/core@2.18.1
+
+## 5.9.0
+
+### Minor Changes
+
+- [#4734](https://github.com/wevm/wagmi/pull/4734) [`eac550ae5b49f96a7e3404a6d88adc62d3889013`](https://github.com/wevm/wagmi/commit/eac550ae5b49f96a7e3404a6d88adc62d3889013) Thanks [@jxom](https://github.com/jxom)! - Added `baseAccount` connector.
+
+### Patch Changes
+
+- Updated dependencies [[`eac550ae5b49f96a7e3404a6d88adc62d3889013`](https://github.com/wevm/wagmi/commit/eac550ae5b49f96a7e3404a6d88adc62d3889013)]:
+  - @wagmi/core@2.18.0
+
+## 5.8.6
+
+### Patch Changes
+
+- [#4731](https://github.com/wevm/wagmi/pull/4731) [`e75bd89406e9b6ff5b7d3a7148ab34140fe6352a`](https://github.com/wevm/wagmi/commit/e75bd89406e9b6ff5b7d3a7148ab34140fe6352a) Thanks [@tomiir](https://github.com/tomiir)! - Updated `@coinbase/wallet-sdk` to version 4.3.6
+
+## 5.8.5
+
+### Patch Changes
+
+- Updated dependencies [[`7ce242b549d8cc78e6c319d9ee419693da36704c`](https://github.com/wevm/wagmi/commit/7ce242b549d8cc78e6c319d9ee419693da36704c)]:
+  - @wagmi/core@2.17.3
+
+## 5.8.4
+
+### Patch Changes
+
+- [#4696](https://github.com/wevm/wagmi/pull/4696) [`3a90f358820444a85bb727742b0a16eb943fc361`](https://github.com/wevm/wagmi/commit/3a90f358820444a85bb727742b0a16eb943fc361) Thanks [@tomiir](https://github.com/tomiir)! - Updated @walletconnect/etereum-provider to version 2.21.1
+
 ## 5.8.3
 
 ### Patch Changes

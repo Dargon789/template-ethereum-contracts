@@ -2,14 +2,14 @@ import {
   type AddEthereumChainParameter,
   type Address,
   type EIP1193Provider,
+  getAddress,
+  numberToHex,
   type ProviderConnectInfo,
   type ProviderRpcError,
   ResourceUnavailableRpcError,
   type RpcError,
   SwitchChainError,
   UserRejectedRequestError,
-  getAddress,
-  numberToHex,
   withRetry,
   withTimeout,
 } from 'viem'
@@ -88,10 +88,6 @@ export function injected(parameters: InjectedParameters = {}) {
     get name() {
       return getTarget().name
     },
-    /** @deprecated */
-    get supportsSimulation() {
-      return true
-    },
     type: injected.type,
     async setup() {
       const provider = await this.getProvider()
@@ -110,7 +106,7 @@ export function injected(parameters: InjectedParameters = {}) {
         }
       }
     },
-    async connect({ chainId, isReconnecting } = {}) {
+    async connect({ chainId, isReconnecting, withCapabilities } = {}) {
       const provider = await this.getProvider()
       if (!provider) throw new ProviderNotFoundError()
 
@@ -189,7 +185,12 @@ export function injected(parameters: InjectedParameters = {}) {
         if (!parameters.target)
           await config.storage?.setItem('injected.connected', true)
 
-        return { accounts, chainId: currentChainId }
+        return {
+          accounts: (withCapabilities
+            ? accounts.map((address) => ({ address, capabilities: {} }))
+            : accounts) as never,
+          chainId: currentChainId,
+        }
       } catch (err) {
         const error = err as RpcError
         if (error.code === UserRejectedRequestError.code)
