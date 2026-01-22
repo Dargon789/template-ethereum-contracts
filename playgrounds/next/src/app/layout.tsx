@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { headers } from 'next/headers'
 import type { ReactNode } from 'react'
+import { Analytics } from '@vercel/analytics/next'
 import { cookieToInitialState } from 'wagmi'
 import './globals.css'
 
@@ -24,6 +25,7 @@ export default async function RootLayout(props: { children: ReactNode }) {
     <html lang="en">
       <body className={inter.className}>
         <Providers initialState={initialState}>{props.children}</Providers>
+        <Analytics />
       </body>
     </html>
   )
