@@ -75,7 +75,7 @@ const config: HardhatUserConfig = {
 		maxMethodDiff: 10,
 	},
 	mocha: {
-		timeout: 0,
+    timeout: 200000,
 	},
 	external: process.env.HARDHAT_FORK
 		? {
