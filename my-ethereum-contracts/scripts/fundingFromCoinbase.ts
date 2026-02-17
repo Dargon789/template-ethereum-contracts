@@ -17,7 +17,7 @@ async function main() {
 		try {
 			await ethers.provider.send('eth_chainId', []);
 			found = true;
-		} catch (e) {} // TODO timeout ?
+    } catch (e) { console.error('Error while waiting for network:', e); } // TODO timeout ?
 		if (!found) {
 			console.log(`retrying...`);
 			await wait(1);
