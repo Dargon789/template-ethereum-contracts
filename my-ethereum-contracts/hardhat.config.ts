@@ -40,8 +40,8 @@ const config: HardhatUserConfig = {
 			accounts: accounts(),
 		},
 		staging: {
-			url: node_url('rinkeby'),
-			accounts: accounts('rinkeby'),
+      url: node_url('sepolia'),
+      accounts: accounts('sepolia'),
 		},
 		production: {
 			url: node_url('mainnet'),
