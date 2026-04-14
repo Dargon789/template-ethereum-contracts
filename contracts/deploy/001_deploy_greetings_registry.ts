@@ -6,7 +6,7 @@ export default deployScript(
 		const {deployer, admin} = env.namedAccounts;
 
 		// The prefix will be prepended to all messages
-		const prefix = 'proxy:';
+		const prefix = '';
 
 		// Deploy an upgradeable contract using a proxy pattern
 		// - The implementation is deployed deterministically
@@ -21,6 +21,7 @@ export default deployScript(
 			},
 			{
 				owner: admin,
+				execute: 'init',
 				linkedData: {
 					prefix,
 					admin,

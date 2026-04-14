@@ -26,7 +26,7 @@ describe('GreetingsRegistry', function () {
 		it('should store the message for the caller', async function () {
 			const {env, GreetingsRegistry, unnamedAccounts} =
 				await networkHelpers.loadFixture(deployAll);
-			const prefix = '';
+			const prefix = GreetingsRegistry.linkedData!.prefix;
 			const greetingToSet = 'hello world';
 			const greeter = unnamedAccounts[0];
 
@@ -48,7 +48,7 @@ describe('GreetingsRegistry', function () {
 		it('should allow different users to set different messages', async function () {
 			const {env, GreetingsRegistry, unnamedAccounts} =
 				await networkHelpers.loadFixture(deployAll);
-			const prefix = '';
+			const prefix = GreetingsRegistry.linkedData!.prefix;
 			const user1 = unnamedAccounts[0];
 			const user2 = unnamedAccounts[1];
 			const message1 = 'hello from user 1';
@@ -83,7 +83,7 @@ describe('GreetingsRegistry', function () {
 			const {env, GreetingsRegistry, unnamedAccounts} =
 				await networkHelpers.loadFixture(deployAll);
 			const user = unnamedAccounts[0];
-			const prefix = '';
+			const prefix = GreetingsRegistry.linkedData!.prefix;
 			const initialMessage = 'initial greeting';
 			const updatedMessage = 'updated greeting';
 

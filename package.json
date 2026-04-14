@@ -4,7 +4,7 @@
   "type": "module",
   "devDependencies": {
     "@rocketh/node": "^0.19.3",
-    "ldenv": "^0.3.16",
+    "ldenv": "^0.5.0",
     "set-defaults": "^0.0.5",
     "zellij-launcher": "^0.0.1"
   },
@@ -16,7 +16,7 @@
     "format": "pnpm -r format",
     "format:check": "pnpm -r format:check",
     "---------------------- CONTRACTS ----------------------": "",
-    "contracts:local_node": "ldenv pnpm run --filter ./contracts local_node",
+    "contracts:node:local": "ldenv pnpm run --filter ./contracts node:local",
     "contracts:deploy": "ldenv pnpm run --filter ./contracts deploy @@MODE @@",
     "contracts:fork:deploy": "ldenv pnpm run --filter ./contracts fork:deploy @@MODE @@",
     "contracts:test": "ldenv pnpm run --filter ./contracts test",
