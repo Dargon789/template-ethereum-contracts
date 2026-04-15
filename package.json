@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "workspace",
   "private": true,
   "type": "module",
@@ -161,5 +162,42 @@
         ]
       }
     }
+=======
+  "name": "template-ethereum-contracts-monorepo",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@rocketh/node": "^0.19.3",
+    "ldenv": "^0.5.0",
+    "set-defaults": "^0.0.5",
+    "zellij-launcher": "^0.0.1"
+  },
+  "scripts": {
+    "prepare": "set-defaults .",
+    "preinstall": "npx only-allow pnpm",
+    "cleandep": "rm -rf node_modules && pnpm -r exec rm -rf node_modules",
+    "---------------------- FORMAT ----------------------": "",
+    "format": "pnpm -r format",
+    "format:check": "pnpm -r format:check",
+    "---------------------- CONTRACTS ----------------------": "",
+    "contracts:node:local": "ldenv pnpm run --filter ./contracts node:local",
+    "contracts:deploy": "ldenv pnpm run --filter ./contracts deploy @@MODE @@",
+    "contracts:fork:deploy": "ldenv pnpm run --filter ./contracts fork:deploy @@MODE @@",
+    "contracts:test": "ldenv pnpm run --filter ./contracts test",
+    "contracts:lint": "pnpm --filter ./contracts lint",
+    "contracts:execute": "ldenv pnpm run --filter ./contracts execute @@MODE @@",
+    "contracts:fork:execute": "ldenv pnpm run --filter ./contracts fork:execute @@MODE @@",
+    "contracts:verify": "ldenv pnpm run --filter ./contracts verify @@MODE @@",
+    "contracts:compile": "ldenv pnpm --filter ./contracts compile",
+    "contracts:compile:watch": "ldenv pnpm --filter ./contracts compile:watch",
+    "contracts:build": "ldenv pnpm --filter ./contracts compile ~~ pnpm --filter ./contracts typescript ~~",
+    "contracts:export": "pnpm --filter ./contracts export @@MODE @@",
+    "---------------------- BUILD ----------------------": "",
+    "test": "pnpm contracts:test",
+    "build": "pnpm contracts:build",
+    "---------------------- START ----------------------": "",
+    "stop": "pnpm run --filter ./contracts stop",
+    "start": "pnpm run --filter ./contracts start"
+>>>>>>> ca3658bcd5c49ba23f859faecf5e9023f35ac016
   }
 }
