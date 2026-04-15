@@ -163,4 +163,7 @@ async function performAction(rawArgs) {
 	}
 }
 
-performAction(commandlineArgs);
+performAction(commandlineArgs).catch((err) => {
+	console.error(err);
+	process.exit(1);
+});
