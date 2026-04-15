@@ -198,6 +198,6 @@
     "---------------------- START ----------------------": "",
     "stop": "pnpm run --filter ./contracts stop",
     "start": "pnpm run --filter ./contracts start"
->>>>>>> upstream/main
+>>>>>>> ca3658bcd5c49ba23f859faecf5e9023f35ac016
   }
 }

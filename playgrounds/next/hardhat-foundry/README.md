@@ -4,7 +4,7 @@
 A template for developing EVM smart contracts using hardhat (v3) and hardhat-deploy (v2)
 =======
 A production-ready template for developing EVM smart contracts using [Hardhat v3](https://hardhat.org/) and [hardhat-deploy v2](https://github.com/wighawag/hardhat-deploy) with the [rocketh](https://github.com/wighawag/rocketh) deployment system.
->>>>>>> upstream/main:README.md
+>>>>>>> ca3658bcd5c49ba23f859faecf5e9023f35ac016:README.md
 
 ## Why This Template?
 
@@ -30,7 +30,7 @@ This template is organized as a monorepo, making it easy to:
 - Publish contracts as an npm package for external consumption
 
 ## Project Structure
->>>>>>> upstream/main:README.md
+>>>>>>> ca3658bcd5c49ba23f859faecf5e9023f35ac016:README.md
 
 ```
 <<<<<<< HEAD:playgrounds/next/hardhat-foundry/README.md
@@ -114,7 +114,7 @@ pnpm execute -- localhost scripts/setMessage.ts "Hello everyone"
 │   └── test/                     # TypeScript tests
 ├── package.json                  # Root monorepo configuration
 └── pnpm-workspace.yaml           # PNPM workspace definition
->>>>>>> upstream/main:README.md
+>>>>>>> ca3658bcd5c49ba23f859faecf5e9023f35ac016:README.md
 ```
 
 ## Initial Setup
@@ -125,7 +125,7 @@ You need to have these installed
 - [Node.js](https://nodejs.org/en)
 =======
 ### Prerequisites
->>>>>>> upstream/main:README.md
+>>>>>>> ca3658bcd5c49ba23f859faecf5e9023f35ac016:README.md
 
 - [Node.js](https://nodejs.org/) (v18+)
 - [pnpm](https://pnpm.io/)

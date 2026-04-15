@@ -20,5 +20,5 @@
 		"types": ["node"]
 	},
 	"include": ["deploy", "generated", "hardhat.config.ts"]
->>>>>>> upstream/main:contracts/tsconfig.json
+>>>>>>> ca3658bcd5c49ba23f859faecf5e9023f35ac016:contracts/tsconfig.json
 }
