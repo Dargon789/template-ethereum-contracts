@@ -30,7 +30,7 @@
 		"@rocketh/signer": "^0.19.0",
 		"@rocketh/verifier": "^0.19.3",
 		"@rocketh/viem": "^0.19.0",
-		"@types/node": "^25.5.0",
+		"@types/node": "^20.5.0",
 		"as-soon": "^0.1.6",
 		"cross-var": "^1.1.0",
 		"earl": "^2.0.0",
