@@ -135,7 +135,7 @@ abstract contract ERC20Base is IERC20, ERC20Internal {
 			uint256 currentAllowance = _allowances[from][msg.sender];
 			if (currentAllowance != Constants.UINT256_MAX) {
 				// save gas when allowance is maximal by not reducing it (see https://github.com/ethereum/EIPs/issues/717)
-				require(currentAllowance >= amount, "NOT_AUTHOIZED_ALLOWANCE");
+				require(currentAllowance >= amount, "NOT_AUTHORIZED_ALLOWANCE");
 				_allowances[from][msg.sender] = currentAllowance - amount;
 			}
 		}
