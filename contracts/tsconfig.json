@@ -1,9 +1,4 @@
 {
-<<<<<<< HEAD:tsconfig.json
-  "extends": "./tsconfig.base.json",
-  "include": ["scripts/**/*.ts", "vitest.config.ts"],
-  "exclude": []
-=======
 	"compilerOptions": {
 		"lib": ["es2023"],
 		"module": "node16",
@@ -20,5 +15,4 @@
 		"types": ["node"]
 	},
 	"include": ["deploy", "generated", "hardhat.config.ts"]
->>>>>>> upstream/main:contracts/tsconfig.json
 }
