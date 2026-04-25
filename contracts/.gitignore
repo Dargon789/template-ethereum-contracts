@@ -1,15 +1,22 @@
-cache/
-artifacts/
-
-coverage*
-typechain-types/
-
-node_modules/
-.env
+/node_modules
 
 *.local
-generated/
 
-deployments/hardhat
+# rocketh
+generated
 deployments/localhost
+deployments/hardhat*
+deployments/lan
+deployments/default
+_metadata
 
+# hardhat
+/coverage
+/coverage.json
+/.coverage-config.json
+/.coverage-data.json
+cache
+artifacts
+docs
+
+dist/

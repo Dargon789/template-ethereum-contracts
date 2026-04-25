@@ -6,6 +6,7 @@ import HardhatNetworkHelpers from '@nomicfoundation/hardhat-network-helpers';
 import HardhatKeystore from '@nomicfoundation/hardhat-keystore';
 
 import HardhatDeploy from 'hardhat-deploy';
+import HardhatExternalArtifactsPlugin from 'hardhat-external-artifacts';
 import {
 	addForkConfiguration,
 	addNetworksFromEnv,
@@ -19,14 +20,15 @@ const config: HardhatUserConfig = {
 		HardhatNetworkHelpers,
 		HardhatKeystore,
 		HardhatDeploy,
+		HardhatExternalArtifactsPlugin,
 	],
 	solidity: {
 		profiles: {
 			default: {
-				version: '0.8.17',
+				version: '0.8.28',
 			},
 			production: {
-				version: '0.8.17',
+				version: '0.8.28',
 				settings: {
 					optimizer: {
 						enabled: true,
@@ -60,6 +62,18 @@ const config: HardhatUserConfig = {
 								mnemonic: process.env.MNEMONIC || undefined,
 							},
 						},
+						local: {
+							type: 'edr-simulated',
+							chainType: 'l1',
+							accounts: {
+								mnemonic: process.env.MNEMONIC || undefined,
+							},
+							// this prevent EDR from not mining tx that fails
+							throwOnTransactionFailures: false,
+							mining: {
+								interval: 3000,
+							},
+						},
 					},
 				),
 			),
@@ -74,6 +88,9 @@ const config: HardhatUserConfig = {
 				mode: 'typescript',
 			},
 		],
+	},
+	externalArtifacts: {
+		modules: ['@rocketh/proxy/artifacts'],
 	},
 };
 

@@ -11,7 +11,8 @@
 		"declaration": true,
 		"declarationMap": true,
 		"outDir": "dist",
-		"rootDir": "."
+		"rootDir": ".",
+		"types": ["node"]
 	},
-	"include": ["deploy", "generated"]
+	"include": ["deploy", "generated", "hardhat.config.ts"]
 }

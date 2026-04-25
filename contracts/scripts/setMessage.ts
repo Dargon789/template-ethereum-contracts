@@ -1,32 +1,31 @@
 import hre from 'hardhat';
-import {loadEnvironmentFromHardhat} from '../rocketh/environment.js';
 import {Abi_GreetingsRegistry} from '../generated/abis/GreetingsRegistry.js';
+import {loadEnvironmentFromHardhat} from '../rocketh/environment.js';
 
-// example script
-
-const args = process.argv.slice(2);
-const account = args[0];
-const message = args[1];
-
-async function main() {
+async function main(args: string[]) {
 	const env = await loadEnvironmentFromHardhat({hre});
-
-	const accountAddress = isNaN(parseInt(account))
-		? account
-		: env.unnamedAccounts[parseInt(account)];
-
 	const GreetingsRegistry = env.get<Abi_GreetingsRegistry>('GreetingsRegistry');
 
-	await env.execute(GreetingsRegistry, {
-		account: accountAddress,
-		functionName: 'setMessage',
-		args: [message || 'hello'],
+	const before_messages = await env.read(GreetingsRegistry, {
+		functionName: 'messages',
+		args: [env.namedAccounts.deployer],
 	});
-}
 
-main()
-	.then(() => process.exit(0))
-	.catch((error) => {
-		console.error(error);
-		process.exit(1);
+	console.log(`before: ${before_messages}`);
+
+	const tx = await env.execute(GreetingsRegistry, {
+		account: env.namedAccounts.deployer,
+		functionName: 'setMessage',
+		args: [args[0] || ''],
+		gas: 100000n,
 	});
+
+	console.log(`tx: ${tx.transactionHash}`);
+
+	const after_messages = await env.read(GreetingsRegistry, {
+		functionName: 'messages',
+		args: [env.namedAccounts.deployer],
+	});
+	console.log(`after: ${after_messages}`);
+}
+main(process.argv.slice(2));

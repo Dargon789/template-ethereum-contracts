@@ -16,8 +16,16 @@ export const config = {
 		deployer: {
 			default: 0,
 		},
-		simpleERC20Beneficiary: {
+		admin: {
 			default: 1,
+		},
+	},
+	environments: {
+		localhost: {
+			chain: 31337,
+			overrides: {
+				autoMine: true,
+			},
 		},
 	},
 	data: {},
@@ -35,12 +43,15 @@ import * as readExecuteExtension from '@rocketh/read-execute';
 // this one provide a deployViaProxy function that let you declaratively
 //  deploy proxy based contracts
 import * as deployProxyExtension from '@rocketh/proxy';
+// this one provide a viem handle to clients and contracts
+import * as viemExtension from '@rocketh/viem';
 
 // and export them as a unified object
 const extensions = {
 	...deployExtension,
 	...readExecuteExtension,
 	...deployProxyExtension,
+	...viemExtension,
 };
 export {extensions};
 
@@ -49,6 +60,11 @@ export {extensions};
 type Extensions = typeof extensions;
 type Accounts = typeof config.accounts;
 type Data = typeof config.data;
-type Environment = EnhancedEnvironment<Accounts, Data, UnknownDeployments, Extensions>;
+type Environment = EnhancedEnvironment<
+	Accounts,
+	Data,
+	UnknownDeployments,
+	Extensions
+>;
 
 export type {Extensions, Accounts, Data, Environment};
