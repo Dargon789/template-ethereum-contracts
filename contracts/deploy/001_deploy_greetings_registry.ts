@@ -21,7 +21,7 @@ export default deployScript(
 			},
 			{
 				owner: admin,
-				execute: 'init',
+				execute: {method: 'init', args: [prefix]},
 				linkedData: {
 					prefix,
 					admin,
