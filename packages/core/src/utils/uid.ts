@@ -1,14 +1,20 @@
+import { randomBytes } from 'node:crypto'
+
 const size = 256
 let index = size
 let buffer: string
 
 export function uid(length = 11) {
   if (!buffer || index + length > size * 2) {
-    buffer = ''
     index = 0
-    for (let i = 0; i < size; i++) {
-      buffer += ((256 + Math.random() * 256) | 0).toString(16).substring(1)
-    }
+    const bytes =
+      typeof globalThis.crypto !== 'undefined' &&
+      typeof globalThis.crypto.getRandomValues === 'function'
+        ? globalThis.crypto.getRandomValues(new Uint8Array(size))
+        : randomBytes(size)
+    buffer = Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join(
+      '',
+    )
   }
   return buffer.substring(index, index++ + length)
 }
