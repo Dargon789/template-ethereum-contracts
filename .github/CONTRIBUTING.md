@@ -51,7 +51,7 @@ gh repo clone wagmi-dev/wagmi -- --recurse-submodules
 ```
 
 <div align="right">
-  <a href="#basic-guide">&uarr; back to top</a></b>
+  <a href="#basic-guide">&uarr; back to top</a>
 </div>
 
 ## Installing Node.js and pnpm
