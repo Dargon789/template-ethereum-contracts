@@ -55,7 +55,7 @@ function execute(command) {
 			}
 			resolve();
 		};
-		spawn(command, {
+spawn(command, command.split(' ').slice(1), {
 			stdio: 'inherit',
 			shell: true,
 		}).on('exit', onExit);
