@@ -17,7 +17,7 @@ async function main() {
 		try {
 			await ethers.provider.send('eth_chainId', []);
 			found = true;
-		} catch (e) {} // TODO timeout ?
+    } catch (e) { console.error('Error while waiting for network:', e); } // TODO timeout ?
 		if (!found) {
 			console.log(`retrying...`);
 			await wait(1);
@@ -56,7 +56,7 @@ async function main() {
 			const to = accountsToFund[i];
 			const tx = await coinbaseSigner.sendTransaction({
 				to,
-				value: amount.sub(21000).toHexString(),
+        value: amount.toHexString(),
 				nonce: BigNumber.from(nonce + i).toHexString(),
 			});
 			console.log(`${to}: ${tx.hash}`);
