@@ -2,9 +2,9 @@
   "name": "template-ethereum-contracts-monorepo",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.28.1",
   "devDependencies": {
-    "@rocketh/node": "^0.19.4",
-    "ldenv": "^0.5.0",
+    "ldenv": "^0.6.0",
     "set-defaults": "^0.0.5",
     "zellij-launcher": "^0.0.1"
   },
